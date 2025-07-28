@@ -9,7 +9,7 @@ class EchoCrew:
 
     agents_config = "config/agents_echo.yaml"
     tasks_config = "config/tasks_echo.yaml"
-    
+
     agents: list[BaseAgent]
     tasks: list[Task]
 

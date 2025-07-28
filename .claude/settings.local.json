@@ -10,7 +10,8 @@
       "Bash(ruff check:*)",
       "Bash(black:*)",
       "Bash(pytest:*)",
-      "Bash(gh issue view:*)"
+      "Bash(gh issue view:*)",
+      "Bash(git commit:*)"
     ],
     "deny": []
   }

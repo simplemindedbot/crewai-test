@@ -17,7 +17,7 @@ def run_echo():
     """
     # Get message from command line or use default
     test_message = sys.argv[1] if len(sys.argv) > 1 else "Hello, Echo Crew!"
-    
+
     inputs = {
         "input_message": test_message,
         "current_year": str(datetime.now().year)
@@ -25,7 +25,7 @@ def run_echo():
 
     try:
         result = EchoCrew().crew().kickoff(inputs=inputs)
-        print(f"\n=== Echo Crew Result ===")
+        print("\n=== Echo Crew Result ===")
         print(f"Input: {test_message}")
         print(f"Output: {result}")
         return result
