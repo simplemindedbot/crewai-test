@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/simplemindedbot-crewai-test-badge.png)](https://mseep.ai/app/simplemindedbot-crewai-test)
+
 # AI Agent Swarm Research System
 
 > 🤖 Self-hosted, open-source swarm of AI agents for end-to-end research on arbitrary topics
