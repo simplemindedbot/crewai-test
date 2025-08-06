@@ -1,0 +1,87 @@
+research_task:
+  description: >
+    Conduct comprehensive research about {topic}. Focus on gathering authoritative
+    sources, recent developments, key insights, and relevant data. Consider the
+    current year is {current_year} for temporal relevance.
+    
+    Research should cover:
+    - Current state and recent developments in {topic}
+    - Key challenges and opportunities
+    - Expert perspectives and authoritative sources
+    - Statistical data and trends where available
+    - Future outlook and predictions
+  expected_output: >
+    A structured research report containing:
+    - Executive summary of key findings
+    - 10-15 detailed bullet points of the most relevant information
+    - List of authoritative sources and references
+    - Identification of key trends and patterns
+    - Notable insights and expert opinions
+  agent: researcher_agent
+
+summarize_task:
+  description: >
+    Review the research findings and create a clear, concise summary that preserves
+    the most important insights while making the content accessible. Focus on
+    extracting key themes, main conclusions, and actionable insights.
+    
+    Summarization should include:
+    - Key themes and main conclusions
+    - Most significant findings and insights
+    - Important statistics and data points
+    - Critical trends and patterns
+    - Essential recommendations or implications
+  expected_output: >
+    A well-structured summary containing:
+    - Executive overview (2-3 paragraphs)
+    - 5-7 key findings with supporting details
+    - Main trends and patterns identified
+    - Critical insights and implications
+    - Condensed reference list of primary sources
+  agent: summarizer_agent
+
+validate_task:
+  description: >
+    Perform thorough fact-checking and validation of the summarized research.
+    Verify accuracy of claims, identify any inconsistencies, check source
+    reliability, and ensure information quality meets high standards.
+    
+    Validation should cover:
+    - Accuracy of factual claims and statistics
+    - Reliability and credibility of sources
+    - Consistency of information across different sections
+    - Identification of potential biases or gaps
+    - Assessment of information currency and relevance
+  expected_output: >
+    A validation report containing:
+    - Confirmation of verified facts and statistics
+    - Assessment of source credibility and reliability
+    - List of any inconsistencies or concerns identified
+    - Confidence rating for different claims (High/Medium/Low)
+    - Recommendations for information quality improvements
+    - Final validated summary with quality assurance notes
+  agent: validator_agent
+
+coordinate_task:
+  description: >
+    Synthesize the research, summary, and validation outputs into a comprehensive
+    final report. Ensure consistency, completeness, and professional presentation
+    while maintaining the highest quality standards established by the validation process.
+    
+    Coordination should produce:
+    - Integrated final report combining all team inputs
+    - Quality-assured content based on validation feedback
+    - Professional formatting and structure
+    - Clear executive summary and conclusions
+    - Complete reference documentation
+  expected_output: >
+    A comprehensive final research report in markdown format containing:
+    - Executive Summary
+    - Detailed Findings (organized by key themes)
+    - Validated Statistics and Data
+    - Expert Insights and Analysis
+    - Conclusions and Implications
+    - Complete References and Sources
+    - Quality Assurance Notes
+    - Research Methodology Summary
+  agent: coordinator_agent
