@@ -11,7 +11,10 @@
       "Bash(black:*)",
       "Bash(pytest:*)",
       "Bash(gh issue view:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(find:*)",
+      "Bash(gh issue list:*)"
     ],
     "deny": []
   }
