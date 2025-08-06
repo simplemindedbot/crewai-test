@@ -1,0 +1,65 @@
+{
+  "texts": [
+    "Agent: researcher_agent\nFact: Machine learning adoption increased 45% in healthcare in 2024",
+    "Agent: researcher_agent\nFact: FDA approved 12 new AI-powered diagnostic tools this year",
+    "Agent: researcher_agent\nInput: Research AI in healthcare trends\nOutput: Comprehensive research completed. Key finding: AI diagnostic tools are rapidly gaining FDA approval with machine learning showing significant adoption growth in clinical settings.",
+    "Agent: summarizer_agent\nFact: Healthcare AI market projected to reach $102 billion by 2028",
+    "Agent: summarizer_agent\nInput: Summarize healthcare AI research findings\nOutput: Healthcare AI Summary: The sector shows remarkable growth with 45% increase in ML adoption, 12 new FDA approvals for diagnostic tools, and market projection of $102B by 2028.",
+    "Agent: validator_agent\nFact: FDA approval data verified against official government database",
+    "Agent: validator_agent\nFact: Market projection figures confirmed with McKinsey Healthcare AI Report 2024",
+    "Agent: validator_agent\nInput: Validate healthcare AI claims and statistics\nOutput: Validation completed: FDA approval numbers confirmed via official database. Market projections verified against McKinsey 2024 report. High confidence in data accuracy."
+  ],
+  "metadata": [
+    {
+      "agent_name": "researcher_agent",
+      "type": "fact",
+      "timestamp": "2025-08-06T00:20:24.817129+00:00",
+      "fact": "Machine learning adoption increased 45% in healthcare in 2024"
+    },
+    {
+      "agent_name": "researcher_agent",
+      "type": "fact",
+      "timestamp": "2025-08-06T00:20:24.965436+00:00",
+      "fact": "FDA approved 12 new AI-powered diagnostic tools this year"
+    },
+    {
+      "agent_name": "researcher_agent",
+      "type": "interaction",
+      "timestamp": "2025-08-06T00:20:24.979355+00:00",
+      "input": "Research AI in healthcare trends",
+      "output": "Comprehensive research completed. Key finding: AI diagnostic tools are rapidly gaining FDA approval with machine learning showing significant adoption growth in clinical settings."
+    },
+    {
+      "agent_name": "summarizer_agent",
+      "type": "fact",
+      "timestamp": "2025-08-06T00:20:25.038375+00:00",
+      "fact": "Healthcare AI market projected to reach $102 billion by 2028"
+    },
+    {
+      "agent_name": "summarizer_agent",
+      "type": "interaction",
+      "timestamp": "2025-08-06T00:20:25.097515+00:00",
+      "input": "Summarize healthcare AI research findings",
+      "output": "Healthcare AI Summary: The sector shows remarkable growth with 45% increase in ML adoption, 12 new FDA approvals for diagnostic tools, and market projection of $102B by 2028."
+    },
+    {
+      "agent_name": "validator_agent",
+      "type": "fact",
+      "timestamp": "2025-08-06T00:20:25.209570+00:00",
+      "fact": "FDA approval data verified against official government database"
+    },
+    {
+      "agent_name": "validator_agent",
+      "type": "fact",
+      "timestamp": "2025-08-06T00:20:25.280170+00:00",
+      "fact": "Market projection figures confirmed with McKinsey Healthcare AI Report 2024"
+    },
+    {
+      "agent_name": "validator_agent",
+      "type": "interaction",
+      "timestamp": "2025-08-06T00:20:25.292056+00:00",
+      "input": "Validate healthcare AI claims and statistics",
+      "output": "Validation completed: FDA approval numbers confirmed via official database. Market projections verified against McKinsey 2024 report. High confidence in data accuracy."
+    }
+  ]
+}
