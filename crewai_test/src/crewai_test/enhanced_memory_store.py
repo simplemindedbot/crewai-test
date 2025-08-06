@@ -15,9 +15,12 @@ from .memory_store import SimpleMemoryStore
 class EnhancedMemoryStore(SimpleMemoryStore):
     """Enhanced memory store with vector embeddings for semantic search and agent memory sharing."""
 
-    def __init__(self, storage_path: str = "enhanced_memory_store.json",
-                 embeddings_path: str = "memory_embeddings.index",
-                 embedding_model: str = "all-MiniLM-L6-v2"):
+    def __init__(
+        self,
+        storage_path: str = "enhanced_memory_store.json",
+        embeddings_path: str = "memory_embeddings.index",
+        embedding_model: str = "all-MiniLM-L6-v2",
+    ):
         """
         Initialize enhanced memory store with embeddings support.
 
@@ -33,9 +36,15 @@ class EnhancedMemoryStore(SimpleMemoryStore):
         self.embedding_dim = 384  # Dimension for all-MiniLM-L6-v2
 
         # Initialize FAISS index for vector search
-        self.index = faiss.IndexFlatIP(self.embedding_dim)  # Inner product for cosine similarity
-        self.text_database: list[str] = []  # Store original texts corresponding to embeddings
-        self.metadata_database: list[dict[str, Any]] = []  # Store metadata for each embedding
+        self.index = faiss.IndexFlatIP(
+            self.embedding_dim
+        )  # Inner product for cosine similarity
+        self.text_database: list[str] = (
+            []
+        )  # Store original texts corresponding to embeddings
+        self.metadata_database: list[dict[str, Any]] = (
+            []
+        )  # Store metadata for each embedding
 
         self.load_embeddings()
 
@@ -47,14 +56,16 @@ class EnhancedMemoryStore(SimpleMemoryStore):
                 self.index = faiss.read_index(str(self.embeddings_path))
 
                 # Load text and metadata databases
-                metadata_path = self.embeddings_path.with_suffix('.metadata.json')
+                metadata_path = self.embeddings_path.with_suffix(".metadata.json")
                 if metadata_path.exists():
                     with open(metadata_path) as f:
                         data = json.load(f)
-                        self.text_database = data.get('texts', [])
-                        self.metadata_database = data.get('metadata', [])
+                        self.text_database = data.get("texts", [])
+                        self.metadata_database = data.get("metadata", [])
 
-                print(f"✅ Loaded {len(self.text_database)} embeddings from {self.embeddings_path}")
+                print(
+                    f"✅ Loaded {len(self.text_database)} embeddings from {self.embeddings_path}"
+                )
             except Exception as e:
                 print(f"⚠️  Could not load embeddings: {e}. Starting fresh.")
                 self._initialize_fresh_index()
@@ -74,14 +85,18 @@ class EnhancedMemoryStore(SimpleMemoryStore):
             faiss.write_index(self.index, str(self.embeddings_path))
 
             # Save text and metadata databases
-            metadata_path = self.embeddings_path.with_suffix('.metadata.json')
-            with open(metadata_path, 'w') as f:
-                json.dump({
-                    'texts': self.text_database,
-                    'metadata': self.metadata_database
-                }, f, indent=2, default=str)
+            metadata_path = self.embeddings_path.with_suffix(".metadata.json")
+            with open(metadata_path, "w") as f:
+                json.dump(
+                    {"texts": self.text_database, "metadata": self.metadata_database},
+                    f,
+                    indent=2,
+                    default=str,
+                )
 
-            print(f"💾 Saved {len(self.text_database)} embeddings to {self.embeddings_path}")
+            print(
+                f"💾 Saved {len(self.text_database)} embeddings to {self.embeddings_path}"
+            )
         except Exception as e:
             print(f"❌ Error saving embeddings: {e}")
 
@@ -112,9 +127,13 @@ class EnhancedMemoryStore(SimpleMemoryStore):
         except Exception as e:
             print(f"❌ Error adding to vector store: {e}")
 
-    def semantic_search(self, query: str, top_k: int = 5,
-                       agent_filter: str | None = None,
-                       min_similarity: float = 0.3) -> list[dict[str, Any]]:
+    def semantic_search(
+        self,
+        query: str,
+        top_k: int = 5,
+        agent_filter: str | None = None,
+        min_similarity: float = 0.3,
+    ) -> list[dict[str, Any]]:
         """
         Perform semantic search across all stored memories.
 
@@ -132,11 +151,15 @@ class EnhancedMemoryStore(SimpleMemoryStore):
 
         try:
             # Generate query embedding
-            query_embedding = self.embedding_model.encode([query], normalize_embeddings=True)
+            query_embedding = self.embedding_model.encode(
+                [query], normalize_embeddings=True
+            )
             query_embedding = query_embedding.astype(np.float32)
 
             # Search FAISS index
-            scores, indices = self.index.search(query_embedding, min(top_k * 2, len(self.text_database)))
+            scores, indices = self.index.search(
+                query_embedding, min(top_k * 2, len(self.text_database))
+            )
 
             results = []
             for i, (score, idx) in enumerate(zip(scores[0], indices[0], strict=False)):
@@ -146,15 +169,17 @@ class EnhancedMemoryStore(SimpleMemoryStore):
                 metadata = self.metadata_database[idx]
 
                 # Apply agent filter if specified
-                if agent_filter and metadata.get('agent_name') != agent_filter:
+                if agent_filter and metadata.get("agent_name") != agent_filter:
                     continue
 
-                results.append({
-                    'text': self.text_database[idx],
-                    'metadata': metadata,
-                    'similarity': float(score),
-                    'rank': i + 1
-                })
+                results.append(
+                    {
+                        "text": self.text_database[idx],
+                        "metadata": metadata,
+                        "similarity": float(score),
+                        "rank": i + 1,
+                    }
+                )
 
                 if len(results) >= top_k:
                     break
@@ -165,19 +190,27 @@ class EnhancedMemoryStore(SimpleMemoryStore):
             print(f"❌ Error in semantic search: {e}")
             return []
 
-    def store_interaction(self, agent_name: str, input_message: str, output_message: str) -> None:
+    def store_interaction(
+        self, agent_name: str, input_message: str, output_message: str
+    ) -> None:
         """Enhanced interaction storage with embeddings."""
         # Call parent method for structured storage
         super().store_interaction(agent_name, input_message, output_message)
 
         # Add to vector store for semantic search
-        interaction_text = f"Agent: {agent_name}\nInput: {input_message}\nOutput: {output_message}"
+        interaction_text = (
+            f"Agent: {agent_name}\nInput: {input_message}\nOutput: {output_message}"
+        )
         metadata = {
-            'agent_name': agent_name,
-            'type': 'interaction',
-            'timestamp': datetime.now(timezone.utc).isoformat(),
-            'input': input_message,
-            'output': output_message[:200] + "..." if len(output_message) > 200 else output_message
+            "agent_name": agent_name,
+            "type": "interaction",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "input": input_message,
+            "output": (
+                output_message[:200] + "..."
+                if len(output_message) > 200
+                else output_message
+            ),
         }
         self.add_to_vector_store(interaction_text, metadata)
 
@@ -189,15 +222,16 @@ class EnhancedMemoryStore(SimpleMemoryStore):
         # Add to vector store for semantic search
         fact_text = f"Agent: {agent_name}\nFact: {fact}"
         metadata = {
-            'agent_name': agent_name,
-            'type': 'fact',
-            'timestamp': datetime.now(timezone.utc).isoformat(),
-            'fact': fact
+            "agent_name": agent_name,
+            "type": "fact",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "fact": fact,
         }
         self.add_to_vector_store(fact_text, metadata)
 
-    def get_relevant_context(self, agent_name: str, query: str,
-                           context_limit: int = 5) -> list[dict[str, Any]]:
+    def get_relevant_context(
+        self, agent_name: str, query: str, context_limit: int = 5
+    ) -> list[dict[str, Any]]:
         """
         Get relevant context for an agent based on semantic similarity.
 
@@ -213,7 +247,9 @@ class EnhancedMemoryStore(SimpleMemoryStore):
         all_results = self.semantic_search(query, top_k=context_limit * 2)
 
         # Also include agent-specific memories
-        agent_results = self.semantic_search(query, top_k=context_limit, agent_filter=agent_name)
+        agent_results = self.semantic_search(
+            query, top_k=context_limit, agent_filter=agent_name
+        )
 
         # Combine and deduplicate
         seen_texts = set()
@@ -221,21 +257,26 @@ class EnhancedMemoryStore(SimpleMemoryStore):
 
         # Prioritize agent-specific results
         for result in agent_results:
-            if result['text'] not in seen_texts:
-                result['source'] = 'agent_specific'
+            if result["text"] not in seen_texts:
+                result["source"] = "agent_specific"
                 combined_results.append(result)
-                seen_texts.add(result['text'])
+                seen_texts.add(result["text"])
 
         # Add cross-agent results
         for result in all_results:
-            if result['text'] not in seen_texts and len(combined_results) < context_limit:
-                result['source'] = 'cross_agent'
+            if (
+                result["text"] not in seen_texts
+                and len(combined_results) < context_limit
+            ):
+                result["source"] = "cross_agent"
                 combined_results.append(result)
-                seen_texts.add(result['text'])
+                seen_texts.add(result["text"])
 
         return combined_results[:context_limit]
 
-    def get_cross_agent_insights(self, topic: str, exclude_agent: str | None = None) -> list[dict[str, Any]]:
+    def get_cross_agent_insights(
+        self, topic: str, exclude_agent: str | None = None
+    ) -> list[dict[str, Any]]:
         """
         Get insights from other agents on a specific topic.
 
@@ -250,7 +291,9 @@ class EnhancedMemoryStore(SimpleMemoryStore):
 
         # Filter out specified agent
         if exclude_agent:
-            results = [r for r in results if r['metadata'].get('agent_name') != exclude_agent]
+            results = [
+                r for r in results if r["metadata"].get("agent_name") != exclude_agent
+            ]
 
         return results[:5]
 
@@ -259,26 +302,26 @@ class EnhancedMemoryStore(SimpleMemoryStore):
         analytics = super().get_memory_summary()
 
         # Add embeddings analytics
-        analytics['embeddings'] = {
-            'total_embeddings': len(self.text_database),
-            'embedding_dimension': self.embedding_dim,
-            'model': 'all-MiniLM-L6-v2'
+        analytics["embeddings"] = {
+            "total_embeddings": len(self.text_database),
+            "embedding_dimension": self.embedding_dim,
+            "model": "all-MiniLM-L6-v2",
         }
 
         # Agent distribution in embeddings
         agent_distribution = {}
         for metadata in self.metadata_database:
-            agent_name = metadata.get('agent_name', 'unknown')
+            agent_name = metadata.get("agent_name", "unknown")
             agent_distribution[agent_name] = agent_distribution.get(agent_name, 0) + 1
 
-        analytics['embeddings']['agent_distribution'] = agent_distribution
+        analytics["embeddings"]["agent_distribution"] = agent_distribution
 
         return analytics
 
     def __del__(self):
         """Ensure embeddings are saved when object is destroyed."""
         try:
-            if hasattr(self, 'index') and len(self.text_database) > 0:
+            if hasattr(self, "index") and len(self.text_database) > 0:
                 self.save_embeddings()
         except Exception:
             pass  # Ignore errors during cleanup

@@ -21,8 +21,7 @@ class ResearchCrew:
         super().__init__()
         # Initialize enhanced memory store with embeddings for cross-agent memory
         self.memory_store = EnhancedMemoryStore(
-            "research_crew_memory.json",
-            "research_crew_embeddings.index"
+            "research_crew_memory.json", "research_crew_embeddings.index"
         )
 
     @agent
@@ -98,7 +97,7 @@ class ResearchCrew:
         """Creates the multi-agent research crew with sequential workflow."""
         return Crew(
             agents=self.agents,  # All four agents: researcher, summarizer, validator, coordinator
-            tasks=self.tasks,    # All four tasks with proper dependencies
+            tasks=self.tasks,  # All four tasks with proper dependencies
             process=Process.sequential,
             verbose=True,
             memory=True,  # Enable CrewAI's built-in memory system
@@ -126,9 +125,7 @@ class ResearchCrew:
 
         # Store the research interaction in memory
         self.memory_store.store_interaction(
-            "research_crew",
-            f"Research topic: {topic}",
-            output
+            "research_crew", f"Research topic: {topic}", output
         )
 
         # Extract and store key facts
@@ -140,9 +137,7 @@ class ResearchCrew:
         """Retrieve previous research context using semantic search."""
         # Use semantic search to find relevant context
         relevant_memories = self.memory_store.get_relevant_context(
-            "research_crew",
-            topic,
-            context_limit=3
+            "research_crew", topic, context_limit=3
         )
 
         if not relevant_memories:
@@ -150,16 +145,16 @@ class ResearchCrew:
 
         context_lines = ["Previous relevant research context:"]
         for memory in relevant_memories:
-            source_type = memory.get('source', 'unknown')
-            similarity = memory.get('similarity', 0.0)
-            metadata = memory.get('metadata', {})
+            source_type = memory.get("source", "unknown")
+            similarity = memory.get("similarity", 0.0)
+            metadata = memory.get("metadata", {})
 
             # Format context based on type
-            if metadata.get('type') == 'fact':
+            if metadata.get("type") == "fact":
                 context_lines.append(
                     f"- [{source_type}, {similarity:.2f}] Fact: {metadata.get('fact', '')}"
                 )
-            elif metadata.get('type') == 'interaction':
+            elif metadata.get("type") == "interaction":
                 context_lines.append(
                     f"- [{source_type}, {similarity:.2f}] Previous research: {metadata.get('input', '')}"
                 )

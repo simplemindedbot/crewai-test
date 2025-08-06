@@ -13,7 +13,9 @@ def test_cross_agent_recall():
 
     # Initialize memory store
     print("📝 Initializing Enhanced Memory Store...")
-    memory_store = EnhancedMemoryStore("cross_agent_memory.json", "cross_agent_embeddings.index")
+    memory_store = EnhancedMemoryStore(
+        "cross_agent_memory.json", "cross_agent_embeddings.index"
+    )
 
     # Simulate a multi-agent research workflow
     print("\n📋 Simulating Multi-Agent Research Workflow")
@@ -21,31 +23,45 @@ def test_cross_agent_recall():
 
     # Phase 1: Research Agent discovers facts
     print("\n🔍 Phase 1: Research Agent Discovery")
-    memory_store.store_fact("researcher_agent", "Machine learning adoption increased 45% in healthcare in 2024")
-    memory_store.store_fact("researcher_agent", "FDA approved 12 new AI-powered diagnostic tools this year")
+    memory_store.store_fact(
+        "researcher_agent",
+        "Machine learning adoption increased 45% in healthcare in 2024",
+    )
+    memory_store.store_fact(
+        "researcher_agent", "FDA approved 12 new AI-powered diagnostic tools this year"
+    )
     memory_store.store_interaction(
         "researcher_agent",
         "Research AI in healthcare trends",
-        "Comprehensive research completed. Key finding: AI diagnostic tools are rapidly gaining FDA approval with machine learning showing significant adoption growth in clinical settings."
+        "Comprehensive research completed. Key finding: AI diagnostic tools are rapidly gaining FDA approval with machine learning showing significant adoption growth in clinical settings.",
     )
 
     # Phase 2: Summarizer Agent processes and adds context
     print("📝 Phase 2: Summarizer Agent Processing")
-    memory_store.store_fact("summarizer_agent", "Healthcare AI market projected to reach $102 billion by 2028")
+    memory_store.store_fact(
+        "summarizer_agent",
+        "Healthcare AI market projected to reach $102 billion by 2028",
+    )
     memory_store.store_interaction(
         "summarizer_agent",
         "Summarize healthcare AI research findings",
-        "Healthcare AI Summary: The sector shows remarkable growth with 45% increase in ML adoption, 12 new FDA approvals for diagnostic tools, and market projection of $102B by 2028."
+        "Healthcare AI Summary: The sector shows remarkable growth with 45% increase in ML adoption, 12 new FDA approvals for diagnostic tools, and market projection of $102B by 2028.",
     )
 
     # Phase 3: Validator Agent cross-references facts
     print("✅ Phase 3: Validator Agent Verification")
-    memory_store.store_fact("validator_agent", "FDA approval data verified against official government database")
-    memory_store.store_fact("validator_agent", "Market projection figures confirmed with McKinsey Healthcare AI Report 2024")
+    memory_store.store_fact(
+        "validator_agent",
+        "FDA approval data verified against official government database",
+    )
+    memory_store.store_fact(
+        "validator_agent",
+        "Market projection figures confirmed with McKinsey Healthcare AI Report 2024",
+    )
     memory_store.store_interaction(
         "validator_agent",
         "Validate healthcare AI claims and statistics",
-        "Validation completed: FDA approval numbers confirmed via official database. Market projections verified against McKinsey 2024 report. High confidence in data accuracy."
+        "Validation completed: FDA approval numbers confirmed via official database. Market projections verified against McKinsey 2024 report. High confidence in data accuracy.",
     )
 
     # Test Cross-Agent Recall Scenarios
@@ -57,47 +73,51 @@ def test_cross_agent_recall():
     research_context = memory_store.get_relevant_context(
         "coordinator_agent",
         "FDA diagnostic AI approvals research data",
-        context_limit=3
+        context_limit=3,
     )
 
     print(f"   Found {len(research_context)} relevant memories:")
     researcher_facts_found = 0
     for ctx in research_context:
-        agent = ctx['metadata'].get('agent_name', 'unknown')
-        content_type = ctx['metadata'].get('type', 'unknown')
-        similarity = ctx.get('similarity', 0.0)
-        print(f"   - Agent: {agent} | Type: {content_type} | Similarity: {similarity:.3f}")
+        agent = ctx["metadata"].get("agent_name", "unknown")
+        content_type = ctx["metadata"].get("type", "unknown")
+        similarity = ctx.get("similarity", 0.0)
+        print(
+            f"   - Agent: {agent} | Type: {content_type} | Similarity: {similarity:.3f}"
+        )
         if agent == "researcher_agent":
             researcher_facts_found += 1
 
     # Scenario 2: Summarizer recalls validator confirmations
     print("\n📋 Scenario 2: Summarizer recalling Validator confirmations")
     validation_context = memory_store.get_relevant_context(
-        "summarizer_agent",
-        "data verification and validation accuracy",
-        context_limit=3
+        "summarizer_agent", "data verification and validation accuracy", context_limit=3
     )
 
     print(f"   Found {len(validation_context)} validation memories:")
     validator_facts_found = 0
     for ctx in validation_context:
-        agent = ctx['metadata'].get('agent_name', 'unknown')
-        content_type = ctx['metadata'].get('type', 'unknown')
-        similarity = ctx.get('similarity', 0.0)
-        print(f"   - Agent: {agent} | Type: {content_type} | Similarity: {similarity:.3f}")
+        agent = ctx["metadata"].get("agent_name", "unknown")
+        content_type = ctx["metadata"].get("type", "unknown")
+        similarity = ctx.get("similarity", 0.0)
+        print(
+            f"   - Agent: {agent} | Type: {content_type} | Similarity: {similarity:.3f}"
+        )
         if agent == "validator_agent":
             validator_facts_found += 1
 
     # Scenario 3: Cross-agent insights for new topic
     print("\n💡 Scenario 3: Cross-agent insights for healthcare market analysis")
-    market_insights = memory_store.get_cross_agent_insights("healthcare market growth projections")
+    market_insights = memory_store.get_cross_agent_insights(
+        "healthcare market growth projections"
+    )
 
     print(f"   Found {len(market_insights)} market insights:")
     unique_agents = set()
     for insight in market_insights:
-        agent = insight['metadata'].get('agent_name', 'unknown')
+        agent = insight["metadata"].get("agent_name", "unknown")
         unique_agents.add(agent)
-        similarity = insight.get('similarity', 0.0)
+        similarity = insight.get("similarity", 0.0)
         print(f"   - Agent: {agent} | Similarity: {similarity:.3f}")
         print(f"     Content: {insight['text'][:80]}...")
 
@@ -107,17 +127,21 @@ def test_cross_agent_recall():
 
     agents_with_fda_info = set()
     for result in fda_results:
-        agent = result['metadata'].get('agent_name', 'unknown')
+        agent = result["metadata"].get("agent_name", "unknown")
         agents_with_fda_info.add(agent)
-        similarity = result.get('similarity', 0.0)
-        content_type = result['metadata'].get('type', 'unknown')
-        print(f"   - Agent: {agent} | Type: {content_type} | Similarity: {similarity:.3f}")
+        similarity = result.get("similarity", 0.0)
+        content_type = result["metadata"].get("type", "unknown")
+        print(
+            f"   - Agent: {agent} | Type: {content_type} | Similarity: {similarity:.3f}"
+        )
 
     # Test Results Analysis
     print("\n📊 Cross-Agent Recall Analysis")
     print("-" * 40)
 
-    total_agents_in_memory = len({meta.get('agent_name', 'unknown') for meta in memory_store.metadata_database})
+    total_agents_in_memory = len(
+        {meta.get("agent_name", "unknown") for meta in memory_store.metadata_database}
+    )
 
     print(f"   Total unique agents in memory: {total_agents_in_memory}")
     print(f"   Agents with FDA information: {len(agents_with_fda_info)}")
@@ -138,7 +162,7 @@ def test_cross_agent_recall():
         ("Validator facts accessible", validator_facts_found >= 1),
         ("Researcher facts accessible", researcher_facts_found >= 1),
         ("Cross-agent insights", len(unique_agents) >= 2),
-        ("Memory persistence", analytics['embeddings']['total_embeddings'] >= 6)
+        ("Memory persistence", analytics["embeddings"]["total_embeddings"] >= 6),
     ]
 
     print("\n✅ Success Criteria Evaluation:")
@@ -152,6 +176,7 @@ def test_cross_agent_recall():
     # Final cleanup
     try:
         import os
+
         os.remove("cross_agent_memory.json")
         os.remove("cross_agent_embeddings.index")
         os.remove("cross_agent_embeddings.index.metadata.json")

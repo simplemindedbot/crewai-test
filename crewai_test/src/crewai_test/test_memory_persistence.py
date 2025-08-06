@@ -44,7 +44,9 @@ def test_memory_persistence():
 
     # Check if memory was loaded
     memory_summary2 = crew2.get_memory_summary()
-    print(f"📊 Session 2 memory summary (should show previous data): {memory_summary2}\n")
+    print(
+        f"📊 Session 2 memory summary (should show previous data): {memory_summary2}\n"
+    )
 
     # Test interaction with memory context
     result4 = crew2.run_with_memory("Do you remember my name?")
@@ -62,7 +64,9 @@ def test_memory_persistence():
 
     print(f"   - Total interactions stored: {interaction_count}")
     print(f"   - Total facts stored: {fact_count}")
-    print(f"   - Last interaction time: {echo_agent_data.get('last_interaction', 'None')}")
+    print(
+        f"   - Last interaction time: {echo_agent_data.get('last_interaction', 'None')}"
+    )
 
     # Verify success criteria
     if interaction_count >= 4 and fact_count >= 3:
@@ -75,7 +79,9 @@ def test_memory_persistence():
 
     # Test 4: Show detailed memory
     print("\n📚 Detailed Memory Contents:")
-    recent_interactions = crew2.memory_store.get_recent_interactions("echo_agent", limit=10)
+    recent_interactions = crew2.memory_store.get_recent_interactions(
+        "echo_agent", limit=10
+    )
     for i, interaction in enumerate(recent_interactions, 1):
         print(f"   {i}. [{interaction['timestamp']}]")
         print(f"      Input: {interaction['input']}")

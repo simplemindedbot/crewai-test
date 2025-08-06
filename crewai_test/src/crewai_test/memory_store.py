@@ -29,10 +29,12 @@ class SimpleMemoryStore:
         # Ensure parent directory exists
         self.storage_path.parent.mkdir(parents=True, exist_ok=True)
 
-        with open(self.storage_path, 'w') as f:
+        with open(self.storage_path, "w") as f:
             json.dump(self.memory, f, indent=2, default=str)
 
-    def store_interaction(self, agent_name: str, input_message: str, output_message: str) -> None:
+    def store_interaction(
+        self, agent_name: str, input_message: str, output_message: str
+    ) -> None:
         """Store an agent interaction in memory."""
         if agent_name not in self.memory:
             self.memory[agent_name] = {"interactions": [], "facts": []}
@@ -40,7 +42,7 @@ class SimpleMemoryStore:
         interaction = {
             "timestamp": datetime.now().isoformat(),
             "input": input_message,
-            "output": output_message
+            "output": output_message,
         }
 
         self.memory[agent_name]["interactions"].append(interaction)
@@ -51,10 +53,7 @@ class SimpleMemoryStore:
         if agent_name not in self.memory:
             self.memory[agent_name] = {"interactions": [], "facts": []}
 
-        fact_entry = {
-            "timestamp": datetime.now().isoformat(),
-            "fact": fact
-        }
+        fact_entry = {"timestamp": datetime.now().isoformat(), "fact": fact}
 
         self.memory[agent_name]["facts"].append(fact_entry)
         self.save_memory()
@@ -71,7 +70,9 @@ class SimpleMemoryStore:
             return self.memory[agent_name]["facts"]
         return []
 
-    def get_recent_interactions(self, agent_name: str, limit: int = 5) -> list[dict[str, Any]]:
+    def get_recent_interactions(
+        self, agent_name: str, limit: int = 5
+    ) -> list[dict[str, Any]]:
         """Get the most recent interactions for an agent."""
         interactions = self.get_agent_history(agent_name)
         return interactions[-limit:] if interactions else []
@@ -95,6 +96,10 @@ class SimpleMemoryStore:
             summary[agent_name] = {
                 "interaction_count": len(data.get("interactions", [])),
                 "fact_count": len(data.get("facts", [])),
-                "last_interaction": data.get("interactions", [{}])[-1].get("timestamp") if data.get("interactions") else None
+                "last_interaction": (
+                    data.get("interactions", [{}])[-1].get("timestamp")
+                    if data.get("interactions")
+                    else None
+                ),
             }
         return summary

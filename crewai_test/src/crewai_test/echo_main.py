@@ -18,10 +18,7 @@ def run_echo():
     # Get message from command line or use default
     test_message = sys.argv[1] if len(sys.argv) > 1 else "Hello, Echo Crew!"
 
-    inputs = {
-        "input_message": test_message,
-        "current_year": str(datetime.now().year)
-    }
+    inputs = {"input_message": test_message, "current_year": str(datetime.now().year)}
 
     try:
         result = EchoCrew().crew().kickoff(inputs=inputs)

@@ -50,14 +50,18 @@ class MemoryEchoCrew:
     def run_with_memory(self, input_message: str) -> str:
         """Run the crew and store the interaction in memory."""
         # Store previous interactions context
-        recent_interactions = self.memory_store.get_recent_interactions("echo_agent", limit=3)
+        recent_interactions = self.memory_store.get_recent_interactions(
+            "echo_agent", limit=3
+        )
 
         # Add context to input if there are previous interactions
         context_input = input_message
         if recent_interactions:
             context_lines = ["Previous interactions:"]
             for interaction in recent_interactions:
-                context_lines.append(f"- Input: {interaction['input']}, Output: {interaction['output']}")
+                context_lines.append(
+                    f"- Input: {interaction['input']}, Output: {interaction['output']}"
+                )
             context_lines.append(f"Current input: {input_message}")
             context_input = "\n".join(context_lines)
 

@@ -9,12 +9,14 @@ def run_research_crew():
     """Run the multi-agent research crew with command line topic input."""
 
     # Get topic from command line or use default
-    topic = sys.argv[1] if len(sys.argv) > 1 else "artificial intelligence in healthcare"
+    topic = (
+        sys.argv[1] if len(sys.argv) > 1 else "artificial intelligence in healthcare"
+    )
     current_year = 2024
 
     print(f"🔍 Starting multi-agent research on: {topic}")
     print(f"📅 Research year context: {current_year}")
-    print("="*50)
+    print("=" * 50)
 
     try:
         # Initialize the research crew
@@ -23,9 +25,9 @@ def run_research_crew():
         # Execute the research workflow
         result = crew.run_research(topic, current_year)
 
-        print("\n" + "="*50)
+        print("\n" + "=" * 50)
         print("🎯 Research Workflow Complete!")
-        print("="*50)
+        print("=" * 50)
         print(f"📋 Topic: {topic}")
         print("📝 Report saved to: research_report.md")
         print(f"🧠 Memory interactions stored: {crew.get_memory_summary()}")
