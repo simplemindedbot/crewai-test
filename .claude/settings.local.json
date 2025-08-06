@@ -14,7 +14,9 @@
       "Bash(git commit:*)",
       "Bash(git checkout:*)",
       "Bash(find:*)",
-      "Bash(gh issue list:*)"
+      "Bash(gh issue list:*)",
+      "Bash(gh api:*)",
+      "Bash(gh run view:*)"
     ],
     "deny": []
   }

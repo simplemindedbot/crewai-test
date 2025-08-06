@@ -195,15 +195,15 @@ crewai_test/
 
 Our [comprehensive development plan](DEVPLAN.md) spans 14 weeks across 7 focused sprints:
 
-| Sprint | Focus Area | Timeline | Status | Key Deliverables |
-|--------|------------|----------|--------|------------------|
-| **1** | Foundation Setup | 2 weeks | ✅ Complete | CI/CD, Memory Persistence |
-| **2** | Agent Architecture | 2 weeks | ✅ Complete | Multi-agent Workflows, Enhanced Memory |
-| **3** | Cost Optimization | 2 weeks | 📋 Planned | LLMLingua Integration |
-| **4** | Tool Extensibility | 2 weeks | 📋 Planned | MCP Client Integration |
-| **5** | Dynamic Discovery | 2 weeks | 📋 Planned | Runtime Tool Loading |
-| **6** | Research Automation | 2 weeks | 📋 Planned | End-to-end Workflows |
-| **7** | Production Ready | 2 weeks | 📋 Planned | Testing & Deployment |
+| Sprint | Focus Area          | Timeline | Status     | Key Deliverables                       |
+|--------|---------------------|----------|------------|----------------------------------------|
+| **1**  | Foundation Setup    | 2 weeks  | ✅ Complete | CI/CD, Memory Persistence              |
+| **2**  | Agent Architecture  | 2 weeks  | ✅ Complete | Multi-agent Workflows, Enhanced Memory |
+| **3**  | Cost Optimization   | 2 weeks  | 📋 Planned | LLMLingua Integration                  |
+| **4**  | Tool Extensibility  | 2 weeks  | 📋 Planned | MCP Client Integration                 |
+| **5**  | Dynamic Discovery   | 2 weeks  | 📋 Planned | Runtime Tool Loading                   |
+| **6**  | Research Automation | 2 weeks  | 📋 Planned | End-to-end Workflows                   |
+| **7**  | Production Ready    | 2 weeks  | 📋 Planned | Testing & Deployment                   |
 
 ## 🤝 Contributing
 
