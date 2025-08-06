@@ -1,6 +1,6 @@
-[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/simplemindedbot-crewai-test-badge.png)](https://mseep.ai/app/simplemindedbot-crewai-test)
-
 # AI Agent Swarm Research System
+
+[![Verified on MSeeP](https://mseep.ai/badge.svg)](https://mseep.ai/app/2cc20da7-cfe8-4fa9-abbb-10502ecd36a6)
 
 > 🤖 Self-hosted, open-source swarm of AI agents for end-to-end research on arbitrary topics
 
@@ -208,6 +208,6 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-[![Verified on MSeeP](https://mseep.ai/badge.svg)](https://mseep.ai/app/2cc20da7-cfe8-4fa9-abbb-10502ecd36a6)
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/simplemindedbot-crewai-test-badge.png)](https://mseep.ai/app/simplemindedbot-crewai-test)
 
 **Built with ❤️ for the AI research community**
