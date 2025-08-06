@@ -5,7 +5,16 @@ description = "crewai-test using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.14"
 dependencies = [
-    "crewai[tools]>=0.150.0,<1.0.0"
+    "crewai[tools]>=0.150.0,<1.0.0",
+    "llmlingua>=0.2.2"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "black>=25.0.0",
+    "ruff>=0.12.0",
+    "mypy>=1.17.0"
 ]
 
 [project.scripts]

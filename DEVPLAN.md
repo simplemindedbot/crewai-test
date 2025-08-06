@@ -1,4 +1,8 @@
-## Objectives
+# Development Plan for CrewAI Swarm Research System
+
+This document outlines the development plan for a self-hosted, open-source swarm of AI agents designed to perform end-to-end research on arbitrary topics. The system will utilize CrewAI for orchestration, LLMLingua for prompt compression, and support dynamic Model Context Protocol (MCP) integration.
+
+# Objectives
 
 * Enable a self‑hosted, open‑source swarm of AI agents to perform end‑to‑end research on arbitrary topics.
 * Use **CrewAI** as the orchestration framework for agent coordination, task delegation and shared memory.

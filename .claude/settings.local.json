@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh issue create:*)",
+      "Bash(gh label create:*)",
+      "Bash(gh issue edit:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(source:*)",
+      "Bash(ruff check:*)",
+      "Bash(black:*)",
+      "Bash(pytest:*)",
+      "Bash(gh issue view:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": []
+  }
+}

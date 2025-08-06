@@ -64,9 +64,12 @@ This project enables autonomous research teams of AI agents to collaborate on co
 - ✅ Researcher and Analyst agent roles  
 - ✅ Markdown report generation
 - ✅ YAML-based agent/task configuration
+- ✅ **Sprint 1**: Echo agent with memory persistence
+- ✅ **Sprint 1**: CI/CD pipeline with automated testing
+- ✅ **Sprint 1**: File-based memory store for cross-session persistence
 
 ### In Development (14-week roadmap)
-- 🔄 **Sprint 1**: CI pipeline and memory persistence
+- ✅ **Sprint 1**: CI pipeline and memory persistence
 - 📋 **Sprint 2**: Multi-agent flows with specialized roles
 - 📋 **Sprint 3**: LLMLingua prompt compression integration
 - 📋 **Sprint 4**: MCP dynamic tool loading
@@ -116,6 +119,26 @@ replay <task_id>
 ### Example Research Flow
 
 The system currently researches "AI LLMs" by default and produces a detailed markdown report. You can customize the research topic by modifying the inputs in `src/crewai_test/main.py`.
+
+### Sprint 1: Echo Agent Demo
+
+Test the memory persistence feature with the echo agent:
+
+```bash
+# Test basic echo functionality
+export $(cat crewai_test/.env | xargs)
+cd crewai_test
+PYTHONPATH=src python src/crewai_test/echo_main.py "Hello, World!"
+
+# Test memory persistence across sessions
+PYTHONPATH=src python src/crewai_test/test_memory_persistence.py
+```
+
+The echo agent demonstrates:
+- ✅ Simple agent-task orchestration
+- ✅ Memory persistence across sessions
+- ✅ Cross-session context retrieval
+- ✅ File-based memory storage
 
 ## 📂 Project Structure
 

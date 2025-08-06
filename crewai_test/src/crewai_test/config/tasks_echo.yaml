@@ -1,0 +1,4 @@
+echo_task:
+  description: "Echo back the input message: {input_message}"
+  expected_output: "The exact input message as provided: {input_message}"
+  agent: echo_agent
