@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Current State
 
-CrewAI test project with basic research workflow. Uses Python >=3.10 <3.14, UV for dependency management, and includes LLMLingua. Currently generates `report.md` about AI LLMs research.
+**Sprint 2 Complete**: Multi-agent research system with ResearcherAgent, SummarizerAgent, ValidatorAgent, and CoordinatorAgent. Enhanced memory system with vector embeddings, FAISS semantic search, and cross-agent memory sharing. Uses Python >=3.10 <3.14, UV for dependency management, sentence-transformers, and FAISS. Generates comprehensive research reports through sequential agent workflow.
 
 ## Target Architecture
 
@@ -37,15 +37,16 @@ CrewAI test project with basic research workflow. Uses Python >=3.10 <3.14, UV f
 
 ## Development Roadmap (14 Weeks Total)
 
-### Sprint 1: Environment & Core Prototype (2 weeks)
+### Sprint 1: Environment & Core Prototype (2 weeks) ✅ COMPLETE
 - Initialize Git repo with CI pipeline (lint, type-check, unit tests)
 - CrewAI "Hello World" with minimal crew and memory persistence
 - **Milestone**: Single-agent echo Crew with persistent memory
 
-### Sprint 2: Agent Role Definitions & Flows (2 weeks)
-- Define `ResearcherAgent`, `SummarizerAgent`, `ValidatorAgent` classes
+### Sprint 2: Agent Role Definitions & Flows (2 weeks) ✅ COMPLETE
+- Define `ResearcherAgent`, `SummarizerAgent`, `ValidatorAgent`, `CoordinatorAgent` classes
 - Implement Flow: Researcher → Summarizer → Validator → Coordinator
-- Configure long-term memory store with embeddings
+- Configure long-term memory store with embeddings (FAISS + sentence-transformers)
+- Cross-agent memory sharing and semantic search capabilities
 - **Milestone**: MVP Prototype with multi-agent flow
 
 ### Sprint 3: LLMLingua Integration (2 weeks)
@@ -99,8 +100,16 @@ CrewAI test project with basic research workflow. Uses Python >=3.10 <3.14, UV f
 crewai install
 # or: pip install uv && uv sync
 
-# Run the crew (main command)
+# Run the original crew (basic workflow)
 crewai run
+
+# Run the multi-agent research crew (Sprint 2)
+cd crewai_test
+PYTHONPATH=src python src/crewai_test/research_main.py "research topic"
+
+# Test enhanced memory system
+PYTHONPATH=src python src/crewai_test/test_enhanced_memory.py
+PYTHONPATH=src python src/crewai_test/test_cross_agent_recall.py
 
 # Alternative entry points
 crewai_test
@@ -114,13 +123,21 @@ replay <task_id>
 
 ## Current Architecture
 
-**Core Structure:**
-- `src/crewai_test/crew.py`: Main crew definition with @CrewBase decorator
-- `src/crewai_test/main.py`: Entry points (run, train, replay, test)
-- `config/agents.yaml`: Agent definitions (researcher, reporting_analyst)
-- `config/tasks.yaml`: Task definitions (research_task, reporting_task)
+**Sprint 2 Multi-Agent Structure:**
+- `src/crewai_test/research_crew.py`: Multi-agent research crew with 4 specialized agents
+- `src/crewai_test/enhanced_memory_store.py`: Vector embeddings memory system with FAISS
+- `config/agents_research.yaml`: Multi-agent research configurations (researcher_agent, summarizer_agent, validator_agent, coordinator_agent)
+- `config/tasks_research.yaml`: Sequential task definitions with dependencies
 
-**Workflow:** Sequential process where researcher agent conducts research, then reporting_analyst creates detailed markdown report.
+**Legacy Structure (Sprint 1):**
+- `src/crewai_test/crew.py`: Basic crew definition with @CrewBase decorator
+- `src/crewai_test/echo_crew.py`: Simple echo agent for testing
+- `config/agents.yaml`: Basic agent definitions (researcher, reporting_analyst)
+- `config/tasks.yaml`: Basic task definitions (research_task, reporting_task)
+
+**Workflow:** Multi-agent sequential process: ResearcherAgent → SummarizerAgent → ValidatorAgent → CoordinatorAgent with task dependencies and cross-agent memory sharing.
+
+**Memory System:** Enhanced memory store with vector embeddings, FAISS semantic search, cross-agent context retrieval, and memory analytics.
 
 **Configuration:** Agents and tasks use YAML configs with templating for topic and current_year variables.
 
