@@ -14,18 +14,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```
 ┌─────────────────────────────────────────────┐
-│                 Coordinator                │
-│             (CrewAI Orchestrator)          │
-│  • Manages Shared State & Memory           │
-│  • Dispatches Research/Summarizer/         │
-│    Validator Agents                        │
+│                 Coordinator                 │
+│             (CrewAI Orchestrator)           │
+│  • Manages Shared State & Memory            │
+│  • Dispatches Research/Summarizer/          │
+│    Validator Agents                         │
 └─────────────────────────────────────────────┘
                 │
                 ▼
 ┌─────────────────────────────────────────────┐
-│             Agent Middleware               │
-│  • LLMLingua PromptCompressor              │
-│  • MCP Client Adapter                      │
+│             Agent Middleware                │
+│  • LLMLingua PromptCompressor               │
+│  • MCP Client Adapter                       │
 └─────────────────────────────────────────────┘
                 │
                 ▼
@@ -84,14 +84,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Component Responsibilities
 
-| Component              | Responsibility                                                                       |
-| ---------------------- | ------------------------------------------------------------------------------------ |
-| **CrewAI Core**        | Multi-agent orchestration, task routing, memory store                                |
+| Component              | Responsibility                                                     |
+| ---------------------- | ------------------------------------------------------------------ |
+| **CrewAI Core**        | Multi-agent orchestration, task routing, memory store              |
 | **Agent Roles**        | Researcher: sources, Summarizer: condenses, Validator: fact-checks |
-| **LLMLingua Service**  | Compress prompts before LLM call                                                     |
-| **MCP Integration**    | Dynamically load tool definitions, call tools                                        |
-| **Tool Registry**      | YAML/JSON manifest listing MCP endpoints                                             |
-| **Deployment Scripts** | Docker/Helm for orchestrator and servers                                             |
+| **LLMLingua Service**  | Compress prompts before LLM call                                   |
+| **MCP Integration**    | Dynamically load tool definitions, call tools                      |
+| **Tool Registry**      | YAML/JSON manifest listing MCP endpoints                           |
+| **Deployment Scripts** | Docker/Helm for orchestrator and servers                           |
 
 ## Current Development Commands
 
