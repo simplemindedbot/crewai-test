@@ -116,6 +116,14 @@ This document outlines the development plan for a self-hosted, open-source swarm
   * Benchmark token reduction on sample prompts (> 50% reduction).
   * Ensure LLM responses remain within 5% of uncompressed quality.
 
+* **Enhancements**
+    * **Configuration Management**: Add a `COMPRESSION_ENABLED` flag to easily toggle compression for debugging and A/B testing.
+    * **Error Handling**: Implement a fallback so that if `LLMLingua` fails, the system logs the error and sends the uncompressed prompt, ensuring workflow continuity.
+    * **Metrics & Logging**: Log original token count, compressed token count, and savings percentage for every LLM call to continuously monitor efficiency.
+    * **Testing**:
+        * Add integration tests to compare end-to-end results with and without compression.
+        * Create a specific test to verify the error handling fallback mechanism.
+
 ### Sprint 4: MCP Client Integration (2 weeks)
 
 * **Select SDK**

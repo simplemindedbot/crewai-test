@@ -188,3 +188,6 @@ Temporary Items
 # CrewAI specific (if applicable)
 .crewai/
 logs/
+
+# Claude state file
+claudestate.md
