@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(new-python-project *)",
+      "Bash(add-dep *)",
+      "Bash(remove-dep *)", 
+      "Bash(update-deps)",
+      "Bash(sync-deps)",
+      "Bash(uv-run *)",
+      "Bash(update-python)",
+      "Bash(git *)",
+      "Bash(pytest *)",
+      "Bash(python *)",
+      "Bash(black *)",
+      "Bash(ruff *)",
+      "Read(src/**)",
+      "Read(tests/**)",
+      "Read(*.py)",
+      "Read(pyproject.toml)",
+      "Read(uv.lock)",
+      "Read(README.md)"
+    ],
+    "ask": [
+      "Write(**/**.py)",
+      "Bash(git push *)",
+      "Bash(git commit *)"
+    ],
+    "deny": [
+      "Read(.env*)",
+      "Read(secrets/**)",
+      "Read(.venv/**)",
+      "Bash(rm -rf *)",
+      "Bash(sudo *)"
+    ]
+  },
+  "env": {
+    "CLAUDE_PROJECT_TYPE": "python"
+  }
+}

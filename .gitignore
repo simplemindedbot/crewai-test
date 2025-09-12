@@ -191,3 +191,7 @@ logs/
 
 # Claude state file
 claudestate.md
+
+# In Memoria
+in-memoria.db
+.in-memoria/cache/
