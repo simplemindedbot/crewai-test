@@ -17,7 +17,13 @@
       "Bash(gh issue list:*)",
       "Bash(gh api:*)",
       "Bash(gh run view:*)",
-      "Bash(env)"
+      "Bash(env)",
+      "Bash(uv run:*)",
+      "Bash(PYTHONPATH=src uv run python src/crewai_test/echo_main.py \"Testing CrewAI installation\")",
+      "Bash(PYTHONPATH=src uv run python src/crewai_test/test_memory_persistence.py)",
+      "Bash(PYTHONPATH=src uv run pytest crewai_test/tests/test_echo_crew.py -v)",
+      "Bash(gh pr:*)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }

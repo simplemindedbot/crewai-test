@@ -1,7 +1,5 @@
 # AI Agent Swarm Research System
 
-[![Verified on MSeeP](https://mseep.ai/badge.svg)](https://mseep.ai/app/2cc20da7-cfe8-4fa9-abbb-10502ecd36a6)
-
 > 🤖 Self-hosted, open-source swarm of AI agents for end-to-end research on arbitrary topics
 
 A sophisticated multi-agent research system built with **CrewAI** orchestration, **LLMLingua** prompt compression, and dynamic **MCP (Model Context Protocol)** integration for cost-effective, extensible AI research workflows.
