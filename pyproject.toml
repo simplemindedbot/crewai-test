@@ -1,3 +1,21 @@
+[project]
+name = "crewai-test"
+version = "0.1.0"
+description = "CrewAI test project"
+requires-python = ">=3.10"
+dependencies = [
+    "crewai>=0.1.0",
+    "pytest>=7.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "pytest-cov>=4.0.0",
+]
+
 [tool.black]
 line-length = 88
 target-version = ['py310']
